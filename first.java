@@ -32,10 +32,37 @@ public class sequenceList<T> {
        length++;
        return true;
     }
-    //删除元素
+    //删除元素,通过移动元素实现
+    public void delete(int pos){
+        if(length==0){
+            System.out.println("没有元素");
+        }
+        else if(pos>=1&&pos<=length){
+            for(int i=pos;i<length;i++){
+                listArray[i-1]=listArray[i];
+            }
+            length--;
+        }
+        else System.out.println("不合法");
+    }
     //修改元素
+    public void update(T obj,int pos){
+        if(length==0){
+            System.out.println("没有元素");
+        }
+        else {
+            listArray[pos-1]=obj;
+        }
+    }
     //返回元素下标
-
+    public int findPos(T obj){
+        for(int i=0;i<length;i++){
+            if(listArray[i].equals(obj)){ //equals
+                return i+1;
+            }
+        }
+        return -1;
+    }
     //输出线性表
     public void display(){
         for(int i=0;i<length;i++){
@@ -49,6 +76,9 @@ public class sequenceList<T> {
         for (int i=0;i<a.length;i++){
             list.insert(a[i],i+1);
         }
+        list.delete(2);
+        list.update(21,2);
         list.display();
+        System.out.println("8是"+list.findPos(8));
     }
 }
